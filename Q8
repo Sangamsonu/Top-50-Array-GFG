@@ -1,0 +1,47 @@
+import java.util.*;
+public class subarraySum {
+
+	static ArrayList<Integer> subarraySum(int arr[], int n,int s){
+		ArrayList<Integer> res = new ArrayList<>();
+		int start = 0;
+		int last = 0;
+		boolean flag = false;
+		int currsum = 0;
+		
+		for(int i=0; i<=n; i++) {
+			currsum += arr[i];
+			if(currsum >= s) {
+				last = i;
+				while(currsum > s && start < last) {
+					currsum -= arr[start];
+					start ++;
+				}
+				if(currsum == s) {
+					res.add(start+1);
+					res.add(last+1);
+					flag = true;
+					break;
+				}
+			}
+		}
+		if(!flag) {
+			res.add(-1);
+		}
+	return res;
+	
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub 
+		int arr[] = {15,2,4,8,9,5,10,23};
+		int n = arr.length;
+		int s = 23;
+		ArrayList<Integer> res = subarraySum(arr,n,s);
+		if(res.get(0) == -1) {
+			System.out.println("no subarray");
+		}else {
+			for(int i =0; i<res.size(); i++) {
+				System.out.print(res.get(i)+ " ");
+			}
+		}
+	}
+}
