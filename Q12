@@ -1,0 +1,21 @@
+
+public class Missingnumberinarray {
+
+	static int missingNum(int arr[], int n) {
+		
+		int exptSum = n*(n+1) / 2;
+		
+		int actualSum = 0;
+		for(int i=0; i<n-1; i++) {
+			actualSum += arr[i]; 
+		}
+		return exptSum - actualSum;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[] = {1,2,3,4,6,7,8};
+		int n = arr.length;
+		System.out.print(missingNum(arr,n));
+	}
+
+}
