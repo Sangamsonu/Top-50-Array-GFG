@@ -1,0 +1,24 @@
+class Solution
+{
+    //Function to find the smallest positive number missing from the array.
+    static int missingNumber(int arr[], int size)
+    {
+       int i = 0;
+        while (i < size) {
+            if (arr[i] > 0 && arr[i] <= size && arr[arr[i] - 1] != arr[i]) {
+                int temp = arr[arr[i] - 1];
+                arr[arr[i] - 1] = arr[i];
+                arr[i] = temp;
+            } else {
+                i++;
+            }
+        }
+
+        for (i = 0; i < size; i++) {
+            if (arr[i] != i + 1) {
+                return i + 1;
+            }
+        }
+        return size + 1;
+    }
+}
